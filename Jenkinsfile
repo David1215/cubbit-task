@@ -50,12 +50,9 @@ pipeline {
         stage('Test the Deployed App') {
             steps {
                 script {
-                    // Get the Kubernetes service's external IP or LoadBalancer address
-                    def externalIP = sh(returnStdout: true, script: "kubectl get svc $APP_NAME -n $K8S_NAMESPACE -o jsonpath='{.status.loadBalancer.ingress[0].ip}'").trim()
-
                     // Test the application doing a curl
                     sh """
-                    curl -v http://$externalIP.svc.cluster.local:80 -kv
+                    curl -v http://go-app-service.default.svc.cluster.local:80 -kv
                     """
                 }
             }
