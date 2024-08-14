@@ -25,3 +25,5 @@ To build docker image of the go application:
 In the same directory, there is a folder named "go-app-chart" where there are stored the helm chart files.
 With this templates, will be create k8s manifests of service, deployment and secret resources. To generate these manifests run:
 helm template go-app ./go-app/go-app-chart/
+
+An example of the manifests that will be generated is in app.yaml file in go-app-chart directory.
