@@ -1,8 +1,8 @@
 # cubbit-task
-Repository to try execute the task assigned by Cubbit interviewer
+Repository to try execute the task assigned by Cubbit interviewer.
 
 ## Terraform part
-Before run the terraform plan and apply commands, you have to set the following vars to pass account credentials of an iam user preconfigured on aws account target:
+Before running the terraform plan and apply commands, you have to set the following env vars to pass account credentials of an iam user preconfigured on aws account target:
 export AWS_ACCESS_KEY_ID=your_aws_access_key
 export AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
 
@@ -23,5 +23,5 @@ To build docker image of the go application:
 - docker push {account-id}.dkr.ecr.eu-central-1.amazonaws.com/go-app:latest 
 
 In the same directory, there is a folder named "go-app-chart" where there are stored the helm chart files.
-With this templates, will be create k8s manifests of deployment and secret resources. To generate the manifests open the chart folder and run:
-helm template go-app-chart .
+With this templates, will be create k8s manifests of service, deployment and secret resources. To generate these manifests run:
+helm template go-app ./go-app/go-app-chart/

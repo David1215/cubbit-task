@@ -7,25 +7,42 @@ metadata:
 data:
   hellostr: aGVsbG8=
 ---
+# Source: go-app/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-app-service  
+  namespace: default
+  labels:
+    app: go-app
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: go-app
+---
 # Source: go-app/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-app-chart
+  name: go-app
   namespace: default
 spec:
   replicas: 1 
   selector:
     matchLabels:
-      app: go-app-chart
+      app: go-app
   template:
     metadata: 
       labels: 
-        app: go-app-chart
+        app: go-app
     spec:
       containers: 
         - name: go-application
-          image: :1.0.0
+          image: 499814927990.dkr.ecr.eu-central-1.amazonaws.com/go-app:latest
           env:
           - name: SCR_STR
             valueFrom:
